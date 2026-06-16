@@ -232,7 +232,6 @@ cd "vaultpay-financial"
 ```bash
 cd backend
 npm install
-cp .env.example .env
 ```
 
 Open `backend/.env` and fill in your own values (see [Environment Variables](#environment-variables) below).
@@ -249,7 +248,6 @@ npm run dev
 ```bash
 cd ../frontend
 npm install
-cp .env.example .env
 ```
 
 Open `frontend/.env` and set your Stripe **publishable** key (starts with `pk_`):
