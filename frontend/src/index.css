@@ -117,7 +117,8 @@ body {
 
 .form-group input,
 .form-group select,
-.form-group textarea {
+.form-group textarea,
+.line-input {
   width: 100%;
   padding: 10px 14px;
   border: 1px solid var(--border);
@@ -132,7 +133,8 @@ body {
 
 .form-group input:focus,
 .form-group select:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.line-input:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(2, 136, 209, 0.12);
 }
@@ -250,4 +252,114 @@ body {
   padding: 56px 0;
   color: var(--text-muted);
   font-size: 15px;
+}
+
+/* ── Form page (narrow centered container) ───────────── */
+
+.form-page {
+  padding: 32px 20px;
+  max-width: 780px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.form-actions .btn-primary { flex: 1; }
+
+.btn-submit { padding: 13px; }
+
+.btn-secondary {
+  background: #f5f5f5;
+  color: #424242;
+  padding: 13px 24px;
+}
+
+.btn-secondary:hover:not(:disabled) { background: #eeeeee; }
+
+/* ── Line items editor ───────────────────────────────── */
+
+.line-items {
+  margin-bottom: 20px;
+}
+
+.line-items-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.section-label {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.btn-add-item {
+  background: #e3f2fd;
+  color: #1565c0;
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+.btn-add-item:hover:not(:disabled) { background: #d0e8fb; }
+
+/* Shared 4-column grid for header row + each item row */
+.line-items-cols,
+.line-items-row {
+  display: grid;
+  grid-template-columns: 2fr 80px 120px 32px;
+  gap: 8px;
+}
+
+.line-items-cols {
+  margin-bottom: 6px;
+  padding-left: 2px;
+}
+
+.line-items-row {
+  margin-bottom: 8px;
+}
+
+.col-head {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.line-input--center {
+  text-align: center;
+}
+
+.btn-remove-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--danger);
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-remove-item:disabled {
+  cursor: default;
+  color: #cccccc;
+}
+
+.line-items-total {
+  text-align: right;
+  padding-top: 14px;
+  border-top: 2px solid var(--border);
+  margin-top: 8px;
+}
+
+.line-items-total-value {
+  font-size: 18px;
+  font-weight: 700;
 }

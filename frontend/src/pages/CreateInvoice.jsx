@@ -57,7 +57,7 @@ export default function CreateInvoice() {
   return (
     <>
       <Navbar />
-      <div className="container" style={{ padding: '32px 20px', maxWidth: 780 }}>
+      <div className="container form-page">
         <button className="back-link" onClick={() => navigate('/admin')}>
           ← Back to Dashboard
         </button>
@@ -91,105 +91,63 @@ export default function CreateInvoice() {
               />
             </div>
 
-            <div style={{ marginBottom: 20 }}>
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  marginBottom: 12,
-                }}
-              >
-                <label style={{ fontWeight: 600, fontSize: 13, color: 'var(--text-muted)' }}>
-                  LINE ITEMS
-                </label>
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={addItem}
-                  style={{ background: '#e3f2fd', color: '#1565c0', padding: '6px 14px', fontSize: 13 }}
-                >
+            <div className="line-items">
+              <div className="line-items-header">
+                <label className="section-label">LINE ITEMS</label>
+                <button type="button" className="btn btn-add-item" onClick={addItem}>
                   + Add Item
                 </button>
               </div>
 
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '2fr 80px 120px 32px',
-                  gap: 8,
-                  marginBottom: 6,
-                  paddingLeft: 2,
-                }}
-              >
+              <div className="line-items-cols">
                 {['Description', 'Qty', 'Unit Price ($)', ''].map((h) => (
-                  <span key={h} style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+                  <span key={h} className="col-head">
                     {h}
                   </span>
                 ))}
               </div>
 
               {items.map((item, i) => (
-                <div
-                  key={i}
-                  style={{ display: 'grid', gridTemplateColumns: '2fr 80px 120px 32px', gap: 8, marginBottom: 8 }}
-                >
+                <div key={i} className="line-items-row">
                   <input
                     type="text"
+                    className="line-input"
                     value={item.description}
                     onChange={(e) => updateItem(i, 'description', e.target.value)}
                     placeholder="e.g. Strategy Consulting — Q3"
-                    style={{ padding: '10px 14px', border: '1px solid var(--border)', borderRadius: 'var(--radius)', fontSize: 14, fontFamily: 'inherit', outline: 'none' }}
                     required
                   />
                   <input
                     type="number"
+                    className="line-input line-input--center"
                     value={item.quantity}
                     onChange={(e) => updateItem(i, 'quantity', e.target.value)}
                     min="1"
-                    style={{ padding: '10px 10px', border: '1px solid var(--border)', borderRadius: 'var(--radius)', fontSize: 14, fontFamily: 'inherit', outline: 'none', textAlign: 'center' }}
                     required
                   />
                   <input
                     type="number"
+                    className="line-input"
                     value={item.unitPrice}
                     onChange={(e) => updateItem(i, 'unitPrice', e.target.value)}
                     min="0"
                     step="0.01"
                     placeholder="0.00"
-                    style={{ padding: '10px 12px', border: '1px solid var(--border)', borderRadius: 'var(--radius)', fontSize: 14, fontFamily: 'inherit', outline: 'none' }}
                     required
                   />
                   <button
                     type="button"
+                    className="btn-remove-item"
                     onClick={() => removeItem(i)}
                     disabled={items.length === 1}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      cursor: items.length === 1 ? 'default' : 'pointer',
-                      color: items.length === 1 ? '#ccc' : 'var(--danger)',
-                      fontSize: 22,
-                      lineHeight: 1,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
                   >
                     ×
                   </button>
                 </div>
               ))}
 
-              <div
-                style={{
-                  textAlign: 'right',
-                  padding: '14px 0 0',
-                  borderTop: '2px solid var(--border)',
-                  marginTop: 8,
-                }}
-              >
-                <span style={{ fontSize: 18, fontWeight: 700 }}>
+              <div className="line-items-total">
+                <span className="line-items-total-value">
                   Total: ${total.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                 </span>
               </div>
@@ -205,20 +163,18 @@ export default function CreateInvoice() {
               />
             </div>
 
-            <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
+            <div className="form-actions">
               <button
                 type="submit"
-                className="btn btn-primary"
-                style={{ flex: 1, padding: '13px' }}
+                className="btn btn-primary btn-submit"
                 disabled={loading}
               >
                 {loading ? 'Creating Invoice…' : 'Create Invoice'}
               </button>
               <button
                 type="button"
-                className="btn"
+                className="btn btn-secondary"
                 onClick={() => navigate('/admin')}
-                style={{ background: '#f5f5f5', color: '#424242', padding: '13px 24px' }}
               >
                 Cancel
               </button>
